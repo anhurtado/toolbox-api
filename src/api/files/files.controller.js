@@ -17,7 +17,6 @@ export const fileList = async (req, res) => {
 export const fileData = async (req, res) => {
   try {
     const fileName = req.query.fileName
-    let oneResult = false
     let list = []
 
     // Validate params
@@ -31,7 +30,6 @@ export const fileData = async (req, res) => {
         file: fileName.trim(),
         lines: fileLineFormat(lines)
       })
-      oneResult = true
     } else {
       // Get all files
       const result = await getAllFiles()
@@ -54,10 +52,10 @@ export const fileData = async (req, res) => {
     }
 
     // Response
-    res.status(200).send(oneResult ? list[0] : list)
+    res.status(200).send(list)
   } catch (error) {
-    res.status(500).send({
-      code: 500,
+    res.status(error.code).send({
+      code: error.code,
       type: 'Error',
       message: error.message
     })

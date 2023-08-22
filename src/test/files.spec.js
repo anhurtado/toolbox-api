@@ -24,13 +24,13 @@ describe('File data (endpoints)', () => {
   it('/files/data?fileName=test2.csv (success)', async () => {
     const res = await chai.request(url).get('/files/data?fileName=test2.csv')
     expect(res, 'Status 200').to.have.status(200)
-    expect(res.body, 'Should exists the "file" key').to.have.property('file')
-    expect(res.body, 'Should exists the "lines" key').to.have.property('lines')
-    expect(res.body.lines, 'Should be an array').to.be.an('array')
+    expect(res.body[0], 'Should exists the "file" key').to.have.property('file')
+    expect(res.body[0], 'Should exists the "lines" key').to.have.property('lines')
+    expect(res.body[0].lines, 'Should be an array').to.be.an('array')
   })
 
-  it('/files/data?fileName=test2.csv (fail)', async () => {
+  it('/files/data?fileName=fileNotExists.csv (fail)', async () => {
     const res = await chai.request(url).get('/files/data?fileName=fileNotExists.csv')
-    expect(res, 'Status 500').to.have.status(500)
+    expect(res, 'Status 404').to.have.status(404)
   })
 })
