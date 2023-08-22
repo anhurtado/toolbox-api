@@ -11,6 +11,8 @@ API for Toolbox
 
 # how to run the tests?
 - Go to the root folder of the project with a terminal
+- Run the command `npm install` for install all dependencies
+- Run the command `npm start` to start api
 - Open the another terminal a run the command `npm test`
 
 Note: You must have installed the necessary packages with the `npm install` command locally.
